@@ -16,7 +16,7 @@ public class Product extends Printable{
 	public Product(String pBarCode, String pName, double pPrice){
 		this.productBarCode = pBarCode;
 		this.productName = pName;
-		this.productPrice = Product.roundPrice(pPrice, 2);
+		this.productPrice = Math.abs(Product.roundPrice(pPrice, 2));
 	}
 	
 	public String getBarCode(){

@@ -12,7 +12,8 @@ public class LCD implements OutputDevice{
 	}
 	
 	public void print(String str){
-		ps.println(str);
+		if(!str.equals(""))
+			ps.println(str);
 	}
 	@Override
 	public void print(Printable p){

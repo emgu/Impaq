@@ -8,5 +8,7 @@ public class BarCodeScanner {
 	public String getBarCode(){
 		return scan.nextLine();
 	}
-	
+	public int ttt(int a){
+		return a+100;
+	}
 }

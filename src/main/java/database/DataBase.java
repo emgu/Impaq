@@ -14,26 +14,28 @@ public class DataBase {
 		productListPath = path;
 	}
 
-	public Product findProduct(String scan) {
-		try {
-			BufferedReader buffer = new BufferedReader(new FileReader(productListPath));
-			String line[];
+	public Product findProduct(String barCode) {
+		if(!barCode.equals("")){
+			try {
+				BufferedReader buffer = new BufferedReader(new FileReader(productListPath));
+				String line[];
 			
-			while(buffer.ready()){
-				line = buffer.readLine().split(",");
-				if(scan.equals(line[0])){
-					buffer.close();
-					return new Product(line[0], line[1], Math.abs(Double.parseDouble(line[2])));
+				while(buffer.ready()){
+					line = buffer.readLine().split(",");
+					if(barCode.equals(line[0])){
+						buffer.close();
+						return new Product(line[0], line[1], Double.parseDouble(line[2]));
+					}
 				}
-			}
-			buffer.close();
+				buffer.close();
 			
-		} catch(FileNotFoundException e){
-			System.out.println(productListPath + " file not found...");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("Reading from " + productListPath + " failed...");
-			e.printStackTrace();
+			} catch(FileNotFoundException e){
+				System.out.println(productListPath + " file not found...");
+				e.printStackTrace();
+			} catch (IOException e) {
+				System.out.println("Reading from " + productListPath + " failed...");
+				e.printStackTrace();
+			}
 		}
 		
 		return new Product();
