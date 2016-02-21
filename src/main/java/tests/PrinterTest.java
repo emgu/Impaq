@@ -1,29 +1,36 @@
 package tests;
 
-import static org.junit.Assert.*;
-
-import java.io.PrintStream;
-
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.io.PrintStream;
+
 import out.Printer;
-import printbale.Receipt;
+import productInfo.Product;
+import productInfo.Receipt;
 
 public class PrinterTest {
 
+	PrintStream pstest = Mockito.mock(PrintStream.class);
+	Printer printer = new Printer(pstest);
+	
 	@Test
 	public void PrintRunsGetsFromReceiptOnce() {
 		Receipt rtest = Mockito.mock(Receipt.class);
-		
-		PrintStream pstest = Mockito.mock(PrintStream.class);
-		Printer printer = new Printer(pstest);
 		printer.print(rtest);
 		
-		Mockito.verify(rtest, Mockito.times(1)).getReceiptNumber();
-		Mockito.verify(rtest, Mockito.times(1)).getProductList();
-		Mockito.verify(rtest, Mockito.times(1)).getTotal();
+		Mockito.verify(rtest).getReceiptNumber();
+		Mockito.verify(rtest).getProductList();
+		Mockito.verify(rtest).getTotal();
 
 	}
-
+	@Test
+	public void PrintRunsGetsFromProductOnce() {
+		Product ptest = Mockito.mock(Product.class);
+		printer.print(ptest);
+		
+		Mockito.verify(ptest).getName();
+		Mockito.verify(ptest).getPrice();
+		
+	}
 }

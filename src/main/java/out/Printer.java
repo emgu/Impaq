@@ -3,8 +3,8 @@ package out;
 import java.io.PrintStream;
 import java.util.List;
 
-import printbale.Printable;
-import printbale.Product;
+import productInfo.Product;
+import productInfo.Receipt;
 
 public class Printer implements OutputDevice{
 	private PrintStream ps;
@@ -12,22 +12,28 @@ public class Printer implements OutputDevice{
 	public Printer(PrintStream ps){
 		this.ps=ps;
 	}
+	
 	@Override
-	public void print(Printable recipt) {
+	public void print(String s) {
+		ps.println(s);
+	}
+	@Override
+	public void print(Product p) {
+		ps.println(p.getName() + " " + p.getPrice());
+	}
+	@Override
+	public void print(Receipt recipt) {
 		
-		ps.println("");
-		ps.println("----- Printer  -----");
-		ps.println("");
-		ps.println("Receipt no. " + recipt.getReceiptNumber());
-		ps.println("");
+		print("Receipt no. " + recipt.getReceiptNumber());
+		print("");
 		
 		List<Product> pList = recipt.getProductList();
 		for(Product p : pList){
-			ps.println(p.getBarCode() + " " + p.getName() + " " + p.getPrice());
+			print(p);;
 		}
-		ps.println("");
-		ps.println("Total: " + Product.roundPrice(recipt.getTotal(), 2));
-		ps.println("");
-		ps.println("--------------------");
-	}
+		print("");
+		print("Total: " + Product.roundPrice(recipt.getTotal(), 2));
+		print("");
+
+	}	
 }

@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import printbale.Product;
+import productInfo.Product;
 
 public class DataBase {
 	private static String productListPath;
@@ -22,9 +22,10 @@ public class DataBase {
 			
 				while(buffer.ready()){
 					line = buffer.readLine().split(",");
-					if(barCode.equals(line[0])){
+					if(barCode.equals(line[0].trim())){
 						buffer.close();
-						return new Product(line[0], line[1], Double.parseDouble(line[2]));
+						if(line.length != 3){ return new Product();	}
+						return new Product(line[0].trim(), line[1].trim(), Double.parseDouble(line[2].trim()));
 					}
 				}
 				buffer.close();
@@ -35,6 +36,8 @@ public class DataBase {
 			} catch (IOException e) {
 				System.out.println("Reading from " + productListPath + " failed...");
 				e.printStackTrace();
+			} catch (NumberFormatException e){
+				//return new Product();
 			}
 		}
 		

@@ -3,16 +3,17 @@ package store;
 import database.DataBase;
 import in.BarCodeScanner;
 import out.LCD;
+import out.OutputDevice;
 import out.Printer;
-import printbale.Product;
-import printbale.Receipt;
+import productInfo.Product;
+import productInfo.Receipt;
 
 public class PointOfSale {
 	
 	private DataBase DB;
 	private BarCodeScanner BCscanner;
-	private LCD LCDdisplay;
-	private Printer printer;
+	private OutputDevice LCDdisplay;
+	private OutputDevice printer;
 	
 	public PointOfSale(BarCodeScanner bcs, LCD lcd, Printer p, DataBase db){
 		this.BCscanner = bcs;
@@ -23,39 +24,29 @@ public class PointOfSale {
 	
 	public void handleCustomer(){
 		
-		LCDdisplay.print("----- LCD -----");
-		LCDdisplay.print("type next bar code or \"exit\" to print receipt");
+		LCDdisplay.print("Input barcode or \"exit\":");
 		
 		String barCode = BCscanner.getBarCode();
-		//Product product = new Product();
 		Receipt receipt = new Receipt();
 		
 		while(!barCode.equals("exit")){
 			if(barCode.equals("")){
-				LCDdisplay.print("Invalid bar-code");
-				LCDdisplay.print("---------------");
+				LCDdisplay.print("Invalid bar-code. Next barcode or \"exit\":");
 			} else {
 				Product product = DB.findProduct(barCode);
 				if(product.isEmpty()){
-					LCDdisplay.print("Product not found");	
-					LCDdisplay.print("---------------");
+					LCDdisplay.print("Product not found. Next barcode or \"exit\":");	
 				}else{
 					receipt.addProduct(product);
 					LCDdisplay.print(product);
-					LCDdisplay.print("---------------");
+					LCDdisplay.print("Product cashed. Next barcode or \"exit\":");
 				}
 			}
-			LCDdisplay.print("----- LCD -----");
-			LCDdisplay.print("type next bar code or \"exit\" to print receipt");
+
 			barCode = BCscanner.getBarCode();
 		}
-		LCDdisplay.print("---------------");
-		
+		LCDdisplay.print(receipt);
 		printer.print(receipt);
 	}
-	public int test(int a){
-		System.out.println(a);
-		return a+10;
 
-	}
 }

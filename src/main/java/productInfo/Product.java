@@ -1,9 +1,9 @@
-package printbale;
+package productInfo;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Product extends Printable{
+public class Product {
 	private String productBarCode;
 	private String productName;
 	private double productPrice;

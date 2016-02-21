@@ -1,10 +1,9 @@
-package printbale;
-
+package productInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Receipt extends Printable{
+public class Receipt {
 	private static int receiptNumber = 0;
 	private List<Product> productList;
 	private double total;
@@ -12,12 +11,14 @@ public class Receipt extends Printable{
 	public Receipt(){
 		receiptNumber++;
 		this.productList = new ArrayList<>();
-		this.total = 0.0;
+		this.total = 0.00;
 	}
 	
 	public void addProduct(Product p){
-		this.productList.add(p);
-		this.total += p.getPrice();
+		if(p != null){
+			this.productList.add(p);
+			this.total = Product.roundPrice(this.total + p.getPrice(), 2);
+		}
 	}
 	
 	public int getReceiptNumber(){

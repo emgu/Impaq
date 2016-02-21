@@ -1,7 +1,10 @@
 package out;
 
-import printbale.Printable;
+import productInfo.Product;
+import productInfo.Receipt;
 
 public interface OutputDevice {
-	public void print(Printable printableObj);
+	public void print(String s);
+	public void print(Product p);
+	public void print(Receipt r);
 }

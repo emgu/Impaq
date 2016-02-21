@@ -1,16 +1,13 @@
 package tests;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.io.PrintStream;
 
-import org.junit.Test;
-import org.mockito.Mockito;
-import org.mockito.*;
-
-
 import out.LCD;
-import printbale.Product;
+import productInfo.Product;
+import productInfo.Receipt;
 
 public class LCDTest {
 
@@ -18,26 +15,23 @@ public class LCDTest {
 	LCD lcd = new LCD(pstest);
 	
 	@Test
-	public void LcdPrintTestOnce(){
-			
+	public void LcdPrintStringOnce(){
 		this.lcd.print("text to print");
 		Mockito.verify(pstest).println("text to print");
 	}
-	
 	@Test
-	public void LcdDontPrintEmptyString(){
-			
-		this.lcd.print("");
-		Mockito.verify(pstest, Mockito.times(0)).println("");
+	public void LcdPrintReceiptGetsReciptNumAndTotal(){
+		Receipt rtest = Mockito.mock(Receipt.class);
+		lcd.print(rtest);
+		Mockito.verify(rtest).getReceiptNumber();
+		Mockito.verify(rtest).getTotal();
 	}
-	
 	@Test
-	public void LcdPrintsProduct(){
-			
-		Product prod = new Product();
-		this.lcd.print(prod);
-		Mockito.verify(pstest).println("Bar code: " + prod.getBarCode() + 
-							"Name:" + prod.getName() + 
-							"Price:" + prod.getPrice());;
+	public void LcdPrintProductGetsProductNameAndPrice(){
+		Product ptest = Mockito.mock(Product.class);
+		lcd.print(ptest);
+		Mockito.verify(ptest).getName();
+		Mockito.verify(ptest).getPrice();
+		
 	}
 }
