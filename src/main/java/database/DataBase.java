@@ -46,6 +46,9 @@ public class DataBase {
 
 	public static void ShowProductList() {
 		try {
+			System.out.println("Jelly Bears Store Prices:");
+			System.out.println("");
+			
 			BufferedReader buffer = new BufferedReader(new FileReader(productListPath));
 			String line[];
 			

@@ -22,11 +22,11 @@ public class ReciptTest {
 		Receipt rtest = Mockito.mock(Receipt.class);
 		rtest = new Receipt();
 
-		rtest.addProduct(new Product("bc1", "p1", 1.11));
+		rtest.addProduct(new Product("bc1", "p1", 1.119));
 		rtest.addProduct(new Product("bc2", "p2", -1.12));
-		rtest.addProduct(new Product("bc3", "p3", 1.13));
+		rtest.addProduct(new Product("bc3", "p3", 1.132));
 		
-		assertTrue(rtest.getTotal() == 3.36);
+		assertTrue(rtest.getTotal() == 3.37);
 	}
 
 	

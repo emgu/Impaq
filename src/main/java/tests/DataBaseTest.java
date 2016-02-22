@@ -10,7 +10,7 @@ import productInfo.Product;
 public class DataBaseTest {
 	
 	@Test
-	public void IfBarCodeIsEmptyFindReturnEmptyProduct() {
+	public void IfBarCodeIsEmptyReturnEmptyProduct() {
 		DataBase db = new DataBase(Mockito.anyString());
 		Product prod = db.findProduct("");
 		assertTrue(prod.isEmpty());

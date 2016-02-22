@@ -20,14 +20,14 @@ public class LCDTest {
 		Mockito.verify(pstest).println("text to print");
 	}
 	@Test
-	public void LcdPrintReceiptGetsReciptNumAndTotal(){
+	public void LcdPrintReceiptRunsReciptNumAndTotalOnce(){
 		Receipt rtest = Mockito.mock(Receipt.class);
 		lcd.print(rtest);
 		Mockito.verify(rtest).getReceiptNumber();
 		Mockito.verify(rtest).getTotal();
 	}
 	@Test
-	public void LcdPrintProductGetsProductNameAndPrice(){
+	public void LcdPrintProductGetsProductNameAndPriceOnce(){
 		Product ptest = Mockito.mock(Product.class);
 		lcd.print(ptest);
 		Mockito.verify(ptest).getName();

@@ -5,9 +5,7 @@ import java.util.Scanner;
 
 import database.DataBase;
 import in.BarCodeScanner;
-import out.LCD;
-import out.Printer;
-import tests.*;
+import out.*;
 
 public class Main {
 
