@@ -36,8 +36,7 @@ public class DataBase {
 			} catch (IOException e) {
 				System.out.println("Reading from " + productListPath + " failed...");
 				e.printStackTrace();
-			} catch (NumberFormatException e){
-				//return new Product();
+//			} catch (NumberFormatException e){
 			}
 		}
 		
@@ -47,7 +46,9 @@ public class DataBase {
 	public static void ShowProductList() {
 		try {
 			System.out.println("Jelly Bears Store Prices:");
+			System.out.println("BarCode\tName\t\t\tPrice");
 			System.out.println("");
+			
 			
 			BufferedReader buffer = new BufferedReader(new FileReader(productListPath));
 			String line[];
@@ -55,7 +56,7 @@ public class DataBase {
 			while(buffer.ready()){
 				line = buffer.readLine().split(",");
 				for(String e : line){
-					System.out.print(e + "   ");
+					System.out.print(e + "\t");
 				}
 				System.out.println("");
 			}

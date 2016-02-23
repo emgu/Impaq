@@ -27,10 +27,12 @@ public class PrinterTest {
 	@Test
 	public void PrintRunsGetsFromProductOnce() {
 		Product ptest = Mockito.mock(Product.class);
+		
 		printer.print(ptest);
 		
 		Mockito.verify(ptest).getName();
 		Mockito.verify(ptest).getPrice();
 		
 	}
+	
 }

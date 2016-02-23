@@ -17,7 +17,7 @@ public class Receipt {
 	public void addProduct(Product p){
 		if(p != null){
 			this.productList.add(p);
-			this.total = Product.roundPrice(this.total + p.getPrice(), 2);
+			this.total = Product.roundPrice(this.total + p.getPrice());
 		}
 	}
 	

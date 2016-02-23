@@ -16,7 +16,7 @@ public class Product {
 	public Product(String pBarCode, String pName, double pPrice){
 		this.productBarCode = pBarCode;
 		this.productName = pName;
-		this.productPrice = Math.abs(Product.roundPrice(pPrice, 2));
+		this.productPrice = Math.abs(Product.roundPrice(pPrice));
 	}
 	
 	public String getBarCode(){
@@ -33,11 +33,9 @@ public class Product {
 				this.productName.equals("") &&
 				this.productPrice == 0.0);
 	}
-	public static double roundPrice(double value, int places) {
-	    if (places < 0) throw new IllegalArgumentException();
-
+	public static double roundPrice(double value) {
 	    BigDecimal bd = new BigDecimal(value);
-	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    bd = bd.setScale(2, RoundingMode.HALF_UP);
 	    return bd.doubleValue();
 	}
 }
