@@ -10,8 +10,8 @@ public class ProductTest {
 	
 	@Test
 	public void ProductPriceNonNegativeRounded(){
-		Product prod = new Product(Mockito.anyString(), Mockito.anyString(), -12.999999);
-		double price = prod.getPrice();
+		Product pTest = new Product(Mockito.anyString(), Mockito.anyString(), -12.999999);
+		double price = pTest.getPrice();
 		assertEquals(price, 13.00, 0.01);
 	}
 }

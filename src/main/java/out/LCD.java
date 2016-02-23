@@ -25,6 +25,5 @@ public class LCD implements OutputDevice{
 		print("Printing receipt no. " + r.getReceiptNumber());
 		print("Total: " + r.getTotal());
 		print("");
-		
 	}
 }

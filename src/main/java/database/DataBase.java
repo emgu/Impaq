@@ -36,17 +36,18 @@ public class DataBase {
 			} catch (IOException e) {
 				System.out.println("Reading from " + productListPath + " failed...");
 				e.printStackTrace();
-//			} catch (NumberFormatException e){
+			} catch (NumberFormatException e){
+				System.out.println("Failed data in " + productListPath);
+				e.printStackTrace();
 			}
 		}
-		
 		return new Product();
 	}
 
 	public static void ShowProductList() {
 		try {
 			System.out.println("Jelly Bears Store Prices:");
-			System.out.println("BarCode\tName\t\t\tPrice");
+			System.out.println("BarCode   Name   Price");
 			System.out.println("");
 			
 			
@@ -56,7 +57,7 @@ public class DataBase {
 			while(buffer.ready()){
 				line = buffer.readLine().split(",");
 				for(String e : line){
-					System.out.print(e + "\t");
+					System.out.print(e + "   ");
 				}
 				System.out.println("");
 			}

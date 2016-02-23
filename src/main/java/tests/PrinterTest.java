@@ -11,27 +11,30 @@ import productInfo.Receipt;
 
 public class PrinterTest {
 
-	PrintStream pstest = Mockito.mock(PrintStream.class);
-	Printer printer = new Printer(pstest);
+	PrintStream psTest = Mockito.mock(PrintStream.class);
+	Printer printer = new Printer(psTest);
 	
 	@Test
-	public void PrintRunsGetsFromReceiptOnce() {
-		Receipt rtest = Mockito.mock(Receipt.class);
-		printer.print(rtest);
-		
-		Mockito.verify(rtest).getReceiptNumber();
-		Mockito.verify(rtest).getProductList();
-		Mockito.verify(rtest).getTotal();
-
+	public void PrintStringOnce(){
+		printer.print("text to print");
+		Mockito.verify(psTest).println("text to print");
 	}
 	@Test
-	public void PrintRunsGetsFromProductOnce() {
-		Product ptest = Mockito.mock(Product.class);
+	public void PrintReceiptRunsGetsFromReceiptOnce() {
+		Receipt rTest = Mockito.mock(Receipt.class);
+		printer.print(rTest);
 		
-		printer.print(ptest);
+		Mockito.verify(rTest).getReceiptNumber();
+		Mockito.verify(rTest).getProductList();
+		Mockito.verify(rTest).getTotal();
+	}
+	@Test
+	public void PrintProductRunsGetsFromProductOnce() {
+		Product pTest = Mockito.mock(Product.class);
+		printer.print(pTest);
 		
-		Mockito.verify(ptest).getName();
-		Mockito.verify(ptest).getPrice();
+		Mockito.verify(pTest).getName();
+		Mockito.verify(pTest).getPrice();
 		
 	}
 	

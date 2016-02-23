@@ -9,21 +9,14 @@ import out.*;
 
 public class Main {
 
-
-	
 	public static void main(String[] args) {
 		
 		PrintStream output = new PrintStream(System.out);
 		Scanner input = new Scanner(System.in);
-		
 		PointOfSale checkout = new PointOfSale(	new BarCodeScanner(input),
 												new LCD(output), new Printer(output),
 												new DataBase("data/ProductList.csv"));
-		
 		DataBase.ShowProductList();
-//		testm t = new testm();
-	//	t.ProdWasFound();
-		//checkout.dbTest();
 		
 		Scanner in = new Scanner(System.in);
 				

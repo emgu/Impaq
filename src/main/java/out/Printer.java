@@ -32,7 +32,7 @@ public class Printer implements OutputDevice{
 			print(p);;
 		}
 		print("");
-		print("Total: " + Product.roundPrice(recipt.getTotal(), 2));
+		print("Total: " + Product.roundPrice(recipt.getTotal()));
 		print("");
 
 	}	
